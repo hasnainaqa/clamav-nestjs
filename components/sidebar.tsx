@@ -94,7 +94,6 @@ export function Sidebar({
     { id: "task-list", title: "Task List", icon: CheckSquare, iconColor: "text-gray-700" },
     { id: "journal", title: "Journal", icon: Grid3X3, iconColor: "text-gray-600" },
     { id: "reading-list", title: "Reading List", icon: Book, iconColor: "text-red-600" },
-    { id: "kevin-cookie-company", title: "Kevin Cookie Company Loca...", icon: Cookie, iconColor: "text-amber-500" },
   ]
 
   const togglePageExpansion = (pageId: string) => {

@@ -21,7 +21,6 @@ const PREDEFINED_PAGES = [
   "task-list",
   "journal",
   "reading-list",
-  "kevin-cookie",
 ] as const
 
 export default function NotionDashboard() {
