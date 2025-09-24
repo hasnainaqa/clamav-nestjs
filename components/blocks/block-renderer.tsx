@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import type {
   Block,
@@ -12,65 +12,77 @@ import type {
   CodeBlock,
   DividerBlock,
   ImageBlock as ImageBlockType,
-} from "@/types/blocks"
-import { BlockWrapper } from "./block-wrapper"
-import { TextBlockComponent } from "./text-block"
-import { HeadingBlockComponent } from "./heading-block"
-import { TodoBlockComponent } from "./todo-block"
-import { FormBlockComponent } from "./form-block"
-import { BulletListBlockComponent } from "./bullet-list-block"
-import { NumberedListBlockComponent } from "./numbered-list-block"
-import { QuoteBlockComponent } from "./quote-block"
-import { CodeBlockComponent } from "./code-block"
-import { DividerBlockComponent } from "./divider-block"
-import { ImageBlock } from "./image-block"
+} from "@/types/blocks";
+import { BlockWrapper } from "./block-wrapper";
+import { TextBlockComponent } from "./text-block";
+import { HeadingBlockComponent } from "./heading-block";
+import { TodoBlockComponent } from "./todo-block";
+import { FormBlockComponent } from "./form-block";
+import { BulletListBlockComponent } from "./bullet-list-block";
+import { NumberedListBlockComponent } from "./numbered-list-block";
+import { QuoteBlockComponent } from "./quote-block";
+import { CodeBlockComponent } from "./code-block";
+import { DividerBlockComponent } from "./divider-block";
+import { ImageBlock } from "./image-block";
 
 interface BlockRendererProps {
-  block: Block
-  onUpdate: (id: string, content: any) => void
-  onDelete: (id: string) => void
-  onAddBlock: (type: Block["type"], index?: number) => void
-  onDuplicate: (id: string) => void
-  index: number
+  block: Block;
+  onUpdate: (id: string, content: any) => void;
+  onDelete: (id: string) => void;
+  onAddBlock: (type: Block["type"], index?: number) => void;
+  onDuplicate: (id: string) => void;
+  index: number;
 }
 
-export function BlockRenderer({ block, onUpdate, onDelete, onAddBlock, onDuplicate, index }: BlockRendererProps) {
+export function BlockRenderer({
+  block,
+  onUpdate,
+  onDelete,
+  onAddBlock,
+  onDuplicate,
+  index,
+}: BlockRendererProps) {
   if (!block || !block.id) {
-    console.error("[v0] BlockRenderer received invalid block:", block)
-    return null
+    console.error("[notion] BlockRenderer received invalid block:", block);
+    return null;
   }
 
   const handleDelete = (id: string) => {
     if (!id) {
-      console.error("[v0] Delete called with undefined ID")
-      return
+      console.error("[notion] Delete called with undefined ID");
+      return;
     }
-    console.log("[v0] Deleting block:", id)
-    onDelete(id)
-  }
+    console.log("[notion] Deleting block:", id);
+    onDelete(id);
+  };
 
   const handleDuplicate = (id: string) => {
     if (!id) {
-      console.error("[v0] Duplicate called with undefined ID")
-      return
+      console.error("[notion] Duplicate called with undefined ID");
+      return;
     }
-    console.log("[v0] Duplicating block:", id)
-    onDuplicate(id)
-  }
+    console.log("[notion] Duplicating block:", id);
+    onDuplicate(id);
+  };
 
   const handleAddBlock = (type: Block["type"], insertIndex?: number) => {
-    const targetIndex = insertIndex !== undefined ? insertIndex : index + 1
-    console.log("[v0] Adding block of type:", type, "at index:", targetIndex)
-    onAddBlock(type, targetIndex)
-  }
+    const targetIndex = insertIndex !== undefined ? insertIndex : index + 1;
+    console.log(
+      "[notion] Adding block of type:",
+      type,
+      "at index:",
+      targetIndex
+    );
+    onAddBlock(type, targetIndex);
+  };
 
   const handleUpdate = (updates: Partial<Block>) => {
     if (!block.id) {
-      console.error("[v0] Update called with undefined block ID")
-      return
+      console.error("[notion] Update called with undefined block ID");
+      return;
     }
-    onUpdate(block.id, updates.content)
-  }
+    onUpdate(block.id, updates.content);
+  };
 
   const renderBlockContent = () => {
     switch (block.type) {
@@ -84,7 +96,7 @@ export function BlockRenderer({ block, onUpdate, onDelete, onAddBlock, onDuplica
             onDuplicate={handleDuplicate}
             index={index}
           />
-        )
+        );
       case "heading":
         return (
           <HeadingBlockComponent
@@ -95,7 +107,7 @@ export function BlockRenderer({ block, onUpdate, onDelete, onAddBlock, onDuplica
             onDuplicate={handleDuplicate}
             index={index}
           />
-        )
+        );
       case "todo":
         return (
           <TodoBlockComponent
@@ -106,7 +118,7 @@ export function BlockRenderer({ block, onUpdate, onDelete, onAddBlock, onDuplica
             onDuplicate={handleDuplicate}
             index={index}
           />
-        )
+        );
       case "form":
         return (
           <FormBlockComponent
@@ -117,7 +129,7 @@ export function BlockRenderer({ block, onUpdate, onDelete, onAddBlock, onDuplica
             onDuplicate={handleDuplicate}
             index={index}
           />
-        )
+        );
       case "bullet-list":
         return (
           <BulletListBlockComponent
@@ -128,7 +140,7 @@ export function BlockRenderer({ block, onUpdate, onDelete, onAddBlock, onDuplica
             onDuplicate={handleDuplicate}
             index={index}
           />
-        )
+        );
       case "numbered-list":
         return (
           <NumberedListBlockComponent
@@ -139,7 +151,7 @@ export function BlockRenderer({ block, onUpdate, onDelete, onAddBlock, onDuplica
             onDuplicate={handleDuplicate}
             index={index}
           />
-        )
+        );
       case "quote":
         return (
           <QuoteBlockComponent
@@ -150,7 +162,7 @@ export function BlockRenderer({ block, onUpdate, onDelete, onAddBlock, onDuplica
             onDuplicate={handleDuplicate}
             index={index}
           />
-        )
+        );
       case "code":
         return (
           <CodeBlockComponent
@@ -161,7 +173,7 @@ export function BlockRenderer({ block, onUpdate, onDelete, onAddBlock, onDuplica
             onDuplicate={handleDuplicate}
             index={index}
           />
-        )
+        );
       case "divider":
         return (
           <DividerBlockComponent
@@ -172,7 +184,7 @@ export function BlockRenderer({ block, onUpdate, onDelete, onAddBlock, onDuplica
             onDuplicate={handleDuplicate}
             index={index}
           />
-        )
+        );
       case "image":
         return (
           <ImageBlock
@@ -181,11 +193,11 @@ export function BlockRenderer({ block, onUpdate, onDelete, onAddBlock, onDuplica
             onDelete={() => handleDelete(block.id)}
             isEditing={true}
           />
-        )
+        );
       default:
-        return <div>Unknown block type</div>
+        return <div>Unknown block type</div>;
     }
-  }
+  };
 
   return (
     <div id={`block-${block.id}`} className="scroll-mt-4">
@@ -194,10 +206,9 @@ export function BlockRenderer({ block, onUpdate, onDelete, onAddBlock, onDuplica
         onDelete={handleDelete}
         onDuplicate={handleDuplicate}
         onAddBlock={handleAddBlock}
-        index={index}
-      >
+        index={index}>
         {renderBlockContent()}
       </BlockWrapper>
     </div>
-  )
+  );
 }

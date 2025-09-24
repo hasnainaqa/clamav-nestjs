@@ -148,7 +148,7 @@ export function Sidebar({
 
   const handlePageClick = (pageId: string, blockId?: string) => {
     console.log(
-      "[v0] Page clicked:",
+      "[notion] Page clicked:",
       pageId,
       blockId ? `block: ${blockId}` : ""
     );

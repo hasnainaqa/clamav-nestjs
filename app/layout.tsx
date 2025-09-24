@@ -1,9 +1,9 @@
-import type React from "react"
-import type { Metadata } from "next"
+import type React from "react";
+import type { Metadata } from "next";
 // import { Geist, Geist_Mono } from "next/font/google"
-import { Analytics } from "@vercel/analytics/next"
-import { Suspense } from "react"
-import "./globals.css"
+import { Analytics } from "@vercel/analytics/next";
+import { Suspense } from "react";
+import "./globals.css";
 
 // const geistSans = Geist({
 //   subsets: ["latin"],
@@ -18,13 +18,13 @@ import "./globals.css"
 export const metadata: Metadata = {
   title: "Ntion clone",
   description: "Created with hasnain",
-    generator: 'v0.app'
-}
+  generator: "notion.app",
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
     <html lang="en" className={` antialiased`}>
@@ -33,5 +33,5 @@ export default function RootLayout({
         <Analytics />
       </body>
     </html>
-  )
+  );
 }
